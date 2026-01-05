@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Library Management System</title>
+    <link rel="icon" href="Icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- CRT Scanline Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Network Traffic Visualizer -->
+    <canvas id="network-canvas"></canvas>
+
+    <!-- System Preloader -->
+    <div id="preloader">
+        <div class="loader-ring"></div>
+        <div class="loader-text">INITIALIZING CORE SYSTEMS...</div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="branding">
+            <img src="Icon.ico" alt="ALMS Logo" class="logo-icon">
+            <div class="logo">Automatic Library Management Checkout System</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#help">Help</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" title="Toggle System Alert Mode">⚠️</button>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container">
+         <!-- About Us Section -->
+        <section id="about">
+            <h1>About Portal</h1>
+            <div class="about-portal">
+                <p>ALMS is a multi-component Learning Management System engineered for library automation. Built on the latest Java 23 LTS and JavaFX 23, it delivers high-performance desktop applications for both administrators and end-users. Our architecture leverages a hybrid database approach with PostgreSQL for transactional integrity and MongoDB for flexible analytics.</p>
+                <p>From barcode scanning integration to automated email notifications via Jakarta Mail, ALMS provides a robust, secure, and scalable solution. Whether deployed on Windows, macOS, or Linux, our system ensures operational resilience and data sovereignty through advanced encryption and modular design.</p>
+            </div>
+        </section>
+
+        <!-- Home Page Section -->
+        <section id="home">
+            <h1>Home</h1>
+            <div id="digital-clock">00:00:00</div>
+            <div class="welcome">
+                <p id="welcome-text">Secure Gateway Initialized. Access the central hub for next-generation library management tools. Deploy advanced desktop solutions designed for speed, security, and operational excellence.</p>
+            </div>
+            <div class="portal-briefs">
+                <div class="portal-brief admin-brief">
+                    <h2>Admin Portal</h2>
+                    <p>A comprehensive desktop application for administrative control. Manage inventory, oversee user hierarchies, and visualize data streams with a rich JavaFX interface. Includes bulk data processing and automated reporting.</p>
+                    <h3>Key Features</h3>
+                    <ul class="features">
+                        <li>Inventory Management & Bulk Processing</li>
+                        <li>Role-Based Access Control (RBAC)</li>
+                        <li>Real-time Analytics & Dashboards</li>
+                        <li>Automated Email Notifications</li>
+                    </ul>
+                    <h3>System Requirements</h3>
+                    <ul>
+                        <li><strong>OS:</strong> Windows 10+, macOS 10.14+, Linux</li>
+                        <li><strong>Runtime:</strong> JRE 8+ (JDK 23 Recommended)</li>
+                        <li><strong>RAM:</strong> 4 GB Min (8 GB Recommended)</li>
+                        <li><strong>Storage:</strong> 150 MB Free Space</li>
+                    </ul>
+                    <button class="btn admin-btn" onclick="confirmDownload('../dist/ALMS Admin Portal-1.1.msi')">Download Admin Portal</button>
+                </div>
+                <div class="portal-brief user-brief">
+                    <h2>User Portal</h2>
+                    <p>A frictionless desktop interface for library patrons. Features instant book search, barcode checkout integration, and secure account management. Built for speed and accessibility across all major platforms.</p>
+                    <h3>Key Features</h3>
+                    <ul class="features">
+                        <li>Advanced Search & Filtering</li>
+                        <li>Barcode Scanner Integration</li>
+                        <li>Borrowing History & Tracking</li>
+                        <li>Secure Authentication (BCrypt)</li>
+                    </ul>
+                    <h3>System Requirements</h3>
+                    <ul>
+                        <li><strong>OS:</strong> Windows 10+, macOS 10.14+, Linux</li>
+                        <li><strong>Runtime:</strong> JRE 8+ (JDK 23 Recommended)</li>
+                        <li><strong>RAM:</strong> 4 GB Min (8 GB Recommended)</li>
+                        <li><strong>Storage:</strong> 100 MB Free Space</li>
+                    </ul>
+                    <br>
+                    <button class="btn user-btn" onclick="confirmDownload('../dist/ALMS User Portal-1.1.msi')">Download User Portal</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Help & Installation Guide Section -->
+        <section id="help">
+            <div class="help-content">
+                <h2>Help & Installation Guide</h2>
+                <h3>Deployment Protocols</h3>
+                <p>Execute the following sequence to initialize the software:</p>
+                <ul>
+                    <li>Select the appropriate binary for your operating environment.</li>
+                    <li>Secure the installer to your local drive.</li>
+                    <li><strong>.MSI Executables:</strong> Initiate the setup wizard and authorize installation.</li>
+                    <li><strong>.JAR Archives:</strong> Verify Java Runtime Environment (JRE 8+) integrity, then execute.</li>
+                    <li>Initialize the application and authenticate via secure login.</li>
+                </ul>
+                <button class="btn" onclick="openPDF()" style="display: block; margin: 3rem auto;">Admin Portal</button>
+                <h3>System Requirements</h3>
+                <ul>
+                    <li><strong>Operating System:</strong> Windows 10+, macOS 10.14+, Linux (Ubuntu 18.04+)</li>
+                    <li><strong>Java Runtime:</strong> JRE 8+ (JDK 23 recommended for development)</li>
+                    <li><strong>RAM:</strong> 4 GB minimum (8 GB recommended for JavaFX)</li>
+                    <li><strong>Storage:</strong> 150 MB (Admin) / 100 MB (User) free space</li>
+                    <li><strong>Internet:</strong> Required for setup & integrations; offline mode available</li>
+                </ul>
+                <h3>Common Issues and Troubleshooting</h3>
+                <ul>
+                    <li><strong>Execution Failure:</strong> Verify JRE installation and version compatibility.</li>
+                    <li><strong>Network Error:</strong> Inspect firewall configurations for blocked connections.</li>
+                    <li><strong>Resource Allocation:</strong> Confirm available RAM and disk space meet minimums.</li>
+                    <li><strong>Support:</strong> Contact the technical division for advanced diagnostics.</li>
+                </ul>
+                <button class="btn" onclick="openUserPDF()" style="display: block; margin: 3rem auto;">User Portal</button>
+            </div>
+        </section>
+
+        <!-- Our Team Section -->
+        <section id="team">
+            <div class="team">
+                <div class="team-member">
+                    <img src="harshit.jpg" alt="Harshit Gupta">
+                    <h3>HARSHIT GUPTA</h3>
+                    <p><strong>Role:</strong> Lead Developer</p>
+                    <p>Architect of the core backend infrastructure. Ensuring system stability and database resilience.</p>
+                </div>
+                <div class="team-member">
+                    <img src="bhaskar.jpg" alt="Bhaskar">
+                    <h3>BHASKAR</h3>
+                    <p><strong>Role:</strong> UI/UX Designer</p>
+                    <p>Crafting the visual language and user interface. Bridging human intent with digital response.</p>
+                </div>
+                <div class="team-member">
+                    <img src="nandini (1).jpg" alt="Nandini Gupta">
+                    <h3>NANDINI GUPTA</h3>
+                    <p><strong>Role:</strong> Database Administrator</p>
+                    <p>Guardian of data integrity. Optimizing information architecture for maximum efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+       
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-form">
+                <h2>Contact Us</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div class="success-message" id="successMessage">Thank you for your message! We'll get back to you soon.</div>
+            </div>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="#" onclick="sendEmail()">autolib.69@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="#" onclick="sendWhatsApp()">+91 8755139453</a></p>
+                <p><strong>Address:</strong> Bareilly</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="holo-projector">
+            <div class="holo-beam"></div>
+            <p class="holo-text">&copy; 2023 Automatic Library Management Checkout System. All rights reserved.</p>
+        </div>
+        <div class="system-status">
+            <span class="status-dot"></span> SYSTEM ONLINE | PING: <span id="ping-val">24</span>ms
+        </div>
+    </footer>
+
+    <!-- Live Chat Widget -->
+    <div id="chat-widget">
+        <div id="chat-header">
+            <span>LIVE SUPPORT</span>
+            <div class="chat-controls">
+                <button id="clear-chat" title="Clear Chat">🗑️</button>
+                <button id="close-chat" title="Close">×</button>
+            </div>
+        </div>
+        <div id="chat-messages">
+            <div class="chat-msg bot">
+                <div class="msg-content">System: Connection established. How can we assist you with ALMS deployment?</div>
+                <div class="msg-time">Now</div>
+            </div>
+        </div>
+        <div id="chat-typing" style="display: none;">
+            <span>•</span><span>•</span><span>•</span>
+        </div>
+        <div id="chat-quick-replies">
+            <button class="quick-reply" data-msg="Download Links">Download Links</button>
+            <button class="quick-reply" data-msg="System Requirements">System Requirements</button>
+            <button class="quick-reply" data-msg="Contact Support">Contact Support</button>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type command...">
+            <button id="send-chat">></button>
+        </div>
+    </div>
+    <button id="chat-toggle-btn">💬</button>
+
+    <!-- Modal for Download Confirmation -->
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Download</h3>
+            <p>Are you sure you want to download this file?</p>
+            <div class="modal-buttons">
+                <button class="btn" onclick="proceedDownload()">Yes</button>
+                <button class="btn" onclick="closeModal()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- UI Elements -->
+    <div id="toast">Download Started Successfully!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
